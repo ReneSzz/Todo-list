@@ -1,6 +1,9 @@
-let container = document.getElementById('container')
+"use strict";
 
-
+let container = document.getElementById('container');
+let newList = document.getElementById('newList');
+let subHeading2 = document.getElementById('subHeading2');
+newList.style.color='red';
 
 class todoList {
     name = "";
@@ -32,7 +35,13 @@ fillTasks(){
 }
 }
 
+newList.addEventListener('click', function (e)
+{
+    let newList = document.createElement('div');
+     newList.innerText = "New Project";
+     subHeading2.appendChild(newList);
 
+});
 
 
 
