@@ -5,6 +5,10 @@ let newList = document.getElementById('newList');
 let subHeading2 = document.getElementById('subHeading2');
 newList.style.color='red';
 
+let todoLists = []
+
+
+
 class todoList {
     name = "";
     tasks = []
@@ -37,9 +41,12 @@ fillTasks(){
 
 newList.addEventListener('click', function (e)
 {
-    let newList = document.createElement('div');
-     newList.innerText = "New Project";
-     subHeading2.appendChild(newList);
+    let newListName = document.createElement('div');
+     newListName.innerText = "New Project";
+     subHeading2.appendChild(newListName);
+    newList = new todoList(newListName.innerText);
+    todoLists[todoLists.length]=newList;
+    console.log(todoLists);
 
 });
 
