@@ -40,10 +40,23 @@ fillTasks(){
 }
 
 newList.addEventListener('click', function (e)
-{
-    let newListName = document.createElement('div');
-     newListName.innerText = "New Project";
-     subHeading2.appendChild(newListName);
+{   
+    // Create Template
+    let newListItem = document.createElement('div');
+    newListItem.classList.add('listSideBar')
+    let listNameLabel = document.createElement('input');
+    let acceptButton = document.createElement('button');
+   
+    // ACCEPT Button
+    acceptButton.classList.add('acceptButton')
+    acceptButton.innerText = "Accept"
+    
+    
+    // adding items 
+    subHeading2.appendChild(newListItem)
+     newListItem.appendChild(listNameLabel)
+     newListItem.appendChild(acceptButton);
+     listNameLabel.style.color='black';
     newList = new todoList(newListName.innerText);
     todoLists[todoLists.length]=newList;
     console.log(todoLists);
