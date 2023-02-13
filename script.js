@@ -34,14 +34,37 @@ fillTasks(){
         // let taskName = document.createElement('h3');
         // let deleteTask = document.createElement('h4');
         let test = document.createElement('h1');
-        test.innerText =" Test header";
+        test.innerText =this.name;
         // deleteTask.innerText = "x";
         // taskName.innerText = this.name;
         
         container.appendChild(test);
+        let addNewTask = document.createElement('div');
+        let newTaskText = document.createElement('p');
+            newTaskText.innerText = "Add new task +"
+            container.appendChild(addNewTask);
+            addNewTask.appendChild(newTaskText);
+
+            newTaskText.addEventListener('click', function(e)
+            {
+                newTaskText.style.display = "none";
+               
+                let listNameLabel = document.createElement('input');
+                let listName = document.createElement('p');
+                let acceptButton = document.createElement('button');
+
+                addNewTask.appendChild(listNameLabel);
+                addNewTask.appendChild(listName);
+                addNewTask.appendChild(acceptButton);
+                
+
+                // ACCEPT Button
+                acceptButton.classList.add('acceptButton')
+                acceptButton.innerText = "Accept"
+            })
         // taskContainer.appendChild(taskName);
         // taskContainer.appendChild(deleteTask);
-        console.log(this.todoList);
+        
         
 
 
@@ -53,7 +76,7 @@ fillTasks(){
 createNewList.addEventListener('click', function (e)
 {   
 
-
+createNewList.style.display="none";
 let newListItem = document.createElement('div');
 newListItem.classList.add('listSideBar')
 let listNameLabel = document.createElement('input');
@@ -78,11 +101,12 @@ subHeading2.appendChild(newListItem)
 
 acceptButton.addEventListener('click', function (e)
 {
+    
+    newListItem.classList.remove("listSideBar");
+    newList = new todoList (listNameLabel.value);
     listName.innerText = listNameLabel.value;
     newListItem.removeChild(acceptButton);
     newListItem.removeChild(listNameLabel);
-    newListItem.classList.remove("listSideBar");
-    newList = new todoList (listName.innerText);
     console.log(newList);
     newList.fillTasks();
    
