@@ -3,15 +3,22 @@
 let container = document.getElementById('container');
 let createNewList = document.getElementById('newList');
 let subHeading2 = document.getElementById('subHeading2');
-createNewList.style.color='red';
+createNewList.style.color='black';
 
 let todoLists = []
 
-
+class Task{
+    taskTitle = "";
+    constructor(text)
+    {
+        this.taskTitle = text;
+    }
+}
 
 class todoList {
     name = "";
     tasks = []
+
 constructor(name)
 {
     this.name = name;
@@ -33,6 +40,7 @@ fillTasks(){
         // taskContainer.classList.add("taskBar")
         // let taskName = document.createElement('h3');
         // let deleteTask = document.createElement('h4');
+        
         let test = document.createElement('h1');
         test.innerText =this.name;
         // deleteTask.innerText = "x";
@@ -43,8 +51,14 @@ fillTasks(){
         let newTaskText = document.createElement('p');
             newTaskText.innerText = "Add new task +"
             container.appendChild(addNewTask);
-            addNewTask.appendChild(newTaskText);
+            
+            let baseTask = document.createElement('div');
+            baseTask.classList.add("task");
+            addNewTask.appendChild(baseTask);
+           baseTask.appendChild(newTaskText);
+            
 
+           
             newTaskText.addEventListener('click', function(e)
             {
                 newTaskText.style.display = "none";
@@ -53,18 +67,31 @@ fillTasks(){
                 let listName = document.createElement('p');
                 let acceptButton = document.createElement('button');
 
-                addNewTask.appendChild(listNameLabel);
+                baseTask.appendChild(listNameLabel);
                 addNewTask.appendChild(listName);
                 addNewTask.appendChild(acceptButton);
+                baseTask.style.backgroundColor="transparent";
                 
 
                 // ACCEPT Button
                 acceptButton.classList.add('acceptButton')
                 acceptButton.innerText = "Accept"
+                acceptButton.addEventListener('click', function (e)
+                {
+                    
+                    
+                    let task = new Task (listNameLabel.value);
+                    listName.innerText = listNameLabel.value;
+                    baseTask.removeChild(listNameLabel);
+                    addNewTask.removeChild(listName);
+                    addNewTask.removeChild(acceptButton);
+                    
+                }) 
             })
         // taskContainer.appendChild(taskName);
         // taskContainer.appendChild(deleteTask);
         
+     
         
 
 
@@ -109,7 +136,7 @@ acceptButton.addEventListener('click', function (e)
     newListItem.removeChild(listNameLabel);
     console.log(newList);
     newList.fillTasks();
-   
+    createNewList.style.display="block";
 }) 
 
 
