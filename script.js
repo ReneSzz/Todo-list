@@ -8,6 +8,7 @@ createNewList.style.color='black';
 let todoLists = []
 let tasks = [];
 class Task{
+    
     taskTitle = "";
     constructor(text)
     {
@@ -18,7 +19,7 @@ class Task{
 class todoList {
     name = "";
     tasks = []
-
+    
 constructor(name)
 {
     this.name = name;
@@ -26,113 +27,7 @@ constructor(name)
 
 
 newListCreation(){
-// Create Template
-
-}
-
-
-
-
-fillTasks(){
-    
-      
-        // let taskContainer = document.createElement('div');
-        // taskContainer.classList.add("taskBar")
-        // let taskName = document.createElement('h3');
-        // let deleteTask = document.createElement('h4');
-        
-        let test = document.createElement('h1');
-        test.innerText =this.name;
-        // deleteTask.innerText = "x";
-        // taskName.innerText = this.name;
-        
-        container.appendChild(test);
-        let addNewTask = document.createElement('div');
-        let newTaskText = document.createElement('p');
-            newTaskText.innerText = "Add new task +"
-            container.appendChild(addNewTask);
-            
-            let baseTask = document.createElement('div');
-            baseTask.classList.add("task");
-            addNewTask.appendChild(baseTask);
-           baseTask.appendChild(newTaskText);
-            
-
-           
-            newTaskText.addEventListener('click', function(e)
-            {
-                newTaskText.style.display = "none";
-               
-                let listNameLabel = document.createElement('input');
-                let listName = document.createElement('p');
-                let acceptButton = document.createElement('button');
-
-                baseTask.appendChild(listNameLabel);
-                addNewTask.appendChild(listName);
-                addNewTask.appendChild(acceptButton);
-                baseTask.style.backgroundColor="transparent";
-                
-
-                // ACCEPT Button
-                acceptButton.classList.add('acceptButton')
-                acceptButton.innerText = "Accept"
-                acceptButton.addEventListener('click', function (e)
-                {
-                    
-                    
-                    let task = new Task (listNameLabel.value);
-                    listName.innerText = listNameLabel.value;
-                    baseTask.removeChild(listNameLabel);
-                    addNewTask.removeChild(listName);
-                    addNewTask.removeChild(acceptButton);
-                    let newTask = document.createElement('div');
-                    newTask.classList.add('task')
-                    let taskName = document.createElement('h3');
-                    addNewTask.appendChild(newTask);
-                    taskName.innerText = listNameLabel.value;
-                    task.taskTitle=listNameLabel.value;
-                    newTask.appendChild(taskName);
-                    todoLists[todoLists.length] = task;
-                    console.log(todoLists)
-                    // addNewTask.appendChild(listName);
-                    
-                    baseTask.style.backgroundColor="white";
-                    baseTask.appendChild(newTaskText);
-                    newTaskText.style.display ="block";
-                
-                   
-                    
-                    
-                }) 
-                
-            })
-        // taskContainer.appendChild(taskName);
-        // taskContainer.appendChild(deleteTask);
-//    storeTasks(){
-    
-
-//    }     
-     
-        
-
-
-        
-   
-}
-}
-
-createNewList.addEventListener('click', function (e)
-{   
-    createNewList.style.display="none";
-    if(container.firstChild){
-    while (container.firstChild){
-        container.removeChild(container.lastChild);
-        }
-    }
-
-
-
-
+console.log(this);
 let newListItem = document.createElement('div');
 newListItem.classList.add('listSideBar')
 let listNameLabel = document.createElement('input');
@@ -166,7 +61,168 @@ acceptButton.addEventListener('click', function (e)
     console.log(newList);
     newList.fillTasks();
     createNewList.style.display="block";
-}) 
+})   
+
+
+
+newListItem.addEventListener('click', function (e)
+{
+    newList.createTasks();
+    // thisTodolist.createTasks();
+    
+})
+
+
+}
+
+
+
+
+fillTasks(){
+    
+      
+        // let taskContainer = document.createElement('div');
+        // taskContainer.classList.add("taskBar")
+        // let taskName = document.createElement('h3');
+        // let deleteTask = document.createElement('h4');
+        
+        let test = document.createElement('h1');
+        test.innerText =this.name;
+        // deleteTask.innerText = "x";
+        // taskName.innerText = this.name;
+        
+        container.appendChild(test);
+        let addNewTask = document.createElement('div');
+        let newTaskText = document.createElement('p');
+            newTaskText.innerText = "Add new task +"
+            container.appendChild(addNewTask);
+            
+            let baseTask = document.createElement('div');
+            baseTask.classList.add("task");
+            addNewTask.appendChild(baseTask);
+           baseTask.appendChild(newTaskText);
+           
+            let thisTodolist = this;
+           
+            newTaskText.addEventListener('click', function(e)
+            {
+                newTaskText.style.display = "none";
+               
+                let listNameLabel = document.createElement('input');
+                let listName = document.createElement('p');
+                let acceptButton = document.createElement('button');
+
+                baseTask.appendChild(listNameLabel);
+                addNewTask.appendChild(listName);
+                addNewTask.appendChild(acceptButton);
+                baseTask.style.backgroundColor="transparent";
+                
+
+                // ACCEPT Button
+                acceptButton.classList.add('acceptButton')
+                acceptButton.innerText = "Accept"
+                acceptButton.style.display="block";
+                acceptButton.addEventListener('click', function (e)
+                {
+                    
+                    let newTaskDiv = document.createElement('div');
+                    container.appendChild(newTaskDiv)
+                    container.removeChild(addNewTask);
+                    newTaskDiv.classList.add('task');
+
+
+
+
+                    let task = new Task (listNameLabel.value);
+                    listName.innerText = listNameLabel.value;
+
+                    baseTask.removeChild(listNameLabel);
+                    addNewTask.removeChild(listName);
+
+
+                    acceptButton.style.display="none";
+                    let newTask = document.createElement('div');
+                    newTask.classList.add('task')
+                    let taskName = document.createElement('h3');
+                    // newTaskDiv.appendChild(newTask);
+
+                    taskName.innerText = listNameLabel.value;
+                    task.taskTitle=listNameLabel.value;
+                    newTaskDiv.appendChild(taskName);
+                    console.log(task);
+                    thisTodolist.tasks[thisTodolist.tasks.length] = task;
+                    console.log(thisTodolist.tasks)
+                    
+                    
+                    baseTask.style.backgroundColor="white";
+                    baseTask.appendChild(newTaskText);
+                    newTaskText.style.display ="block";
+                    container.appendChild(addNewTask);
+                    
+                   
+                
+                
+                   
+                    
+                    
+                }) 
+                
+            })
+        // taskContainer.appendChild(taskName);
+        // taskContainer.appendChild(deleteTask);
+//    storeTasks(){
+    
+
+//    }     
+     
+        
+
+
+
+}
+
+createTasks(){
+    // if(container.firstChild){
+    //     while (container.firstChild){
+    //         container.removeChild(container.lastChild);
+    //         }
+    //     }
+    console.log(this);
+    
+//     this.tasks.forEach(element =>  {
+//     console.log("suoer swag");
+//     let newTaskDiv = document.createElement('div');
+//     container.appendChild(newTaskDiv)
+//     newTaskDiv.classList.add('task');
+//     let taskName = document.createElement('h3');
+//     taskName.innerText = element;
+//     newTaskDiv.appendChild(taskName);
+// });
+// }
+}
+
+
+}
+
+
+        
+   
+
+
+createNewList.addEventListener('click', function (e)
+{   
+    createNewList.style.display="none";
+    if(container.firstChild){
+    while (container.firstChild){
+        container.removeChild(container.lastChild);
+        }
+    }
+
+    let newToDoList = new todoList; 
+        newToDoList.newListCreation();
+
+
+
 
 
   
