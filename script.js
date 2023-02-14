@@ -6,7 +6,7 @@ let subHeading2 = document.getElementById('subHeading2');
 createNewList.style.color='black';
 
 let todoLists = []
-
+let tasks = [];
 class Task{
     taskTitle = "";
     constructor(text)
@@ -85,12 +85,33 @@ fillTasks(){
                     baseTask.removeChild(listNameLabel);
                     addNewTask.removeChild(listName);
                     addNewTask.removeChild(acceptButton);
+                    let newTask = document.createElement('div');
+                    newTask.classList.add('task')
+                    let taskName = document.createElement('h3');
+                    addNewTask.appendChild(newTask);
+                    taskName.innerText = listNameLabel.value;
+                    task.taskTitle=listNameLabel.value;
+                    newTask.appendChild(taskName);
+                    todoLists[todoLists.length] = task;
+                    console.log(todoLists)
+                    // addNewTask.appendChild(listName);
+                    
+                    baseTask.style.backgroundColor="white";
+                    baseTask.appendChild(newTaskText);
+                    newTaskText.style.display ="block";
+                
+                   
+                    
                     
                 }) 
+                
             })
         // taskContainer.appendChild(taskName);
         // taskContainer.appendChild(deleteTask);
-        
+//    storeTasks(){
+    
+
+//    }     
      
         
 
@@ -102,8 +123,16 @@ fillTasks(){
 
 createNewList.addEventListener('click', function (e)
 {   
+    createNewList.style.display="none";
+    if(container.firstChild){
+    while (container.firstChild){
+        container.removeChild(container.lastChild);
+        }
+    }
 
-createNewList.style.display="none";
+
+
+
 let newListItem = document.createElement('div');
 newListItem.classList.add('listSideBar')
 let listNameLabel = document.createElement('input');
