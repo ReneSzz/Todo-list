@@ -8,6 +8,7 @@ createNewList.style.color='black';
 let todoLists = []
 let tasks = [];
 let i = 0;
+let counter = 0;
 class Task{
     
     taskTitle = "";
@@ -157,8 +158,9 @@ fillTasks(){
                     taskName.innerText = listNameLabel.value;
                     task.taskTitle=listNameLabel.value;
                     newTaskDiv.appendChild(taskName);
-                    console.log(task);
+                    
                     thisTodolist.tasks[thisTodolist.tasks.length] = task;
+                    console.log(thisTodolist.tasks.length)
                     console.log(thisTodolist.tasks)
                     
                     
@@ -195,7 +197,11 @@ createTasks(){
     //         container.removeChild(container.lastChild);
     //         }
     //     }
-    console.log(this);
+    let test = document.createElement('div');
+    test.innerText="super swag!";
+    container.appendChild(test);
+
+  
     
 //     this.tasks.forEach(element =>  {
 //     console.log("suoer swag");
@@ -225,16 +231,19 @@ createNewList.addEventListener('click', function (e)
         container.removeChild(container.lastChild);
         }
     }
-    let i = 0;
+    
     let newToDoList = new todoList; 
         newToDoList.newListCreation();
-        newToDoList.listNumber = i;
-        todoLists[i]=newToDoList;
-        i++
+        newToDoList.listNumber = counter;
+        todoLists[counter]=newToDoList;
+        counter++
 
 
 
+        newToDoList.addEventListener('click', function (e){
+            console.log(todoLists[newToDoList.listNumber.tasks]);
 
+        });
 
   
 
