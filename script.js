@@ -7,6 +7,7 @@ createNewList.style.color='black';
 
 let todoLists = []
 let tasks = [];
+let i = 0;
 class Task{
     
     taskTitle = "";
@@ -18,7 +19,9 @@ class Task{
 
 class todoList {
     name = "";
-    tasks = []
+    tasks = [];
+    listNumber = 0;
+    
     
 constructor(name)
 {
@@ -27,6 +30,7 @@ constructor(name)
 
 
 newListCreation(){
+
 console.log(this);
 let newListItem = document.createElement('div');
 newListItem.classList.add('listSideBar')
@@ -34,7 +38,10 @@ let listNameLabel = document.createElement('input');
 let listName = document.createElement('p');
 let acceptButton = document.createElement('button');
 listName.innerText = "Enter New List Title";
+newListItem.setAttribute('listNumber', i);
 
+i++;
+console.log(i);
 // ACCEPT Button
 acceptButton.classList.add('acceptButton')
 acceptButton.innerText = "Accept"
@@ -67,6 +74,7 @@ acceptButton.addEventListener('click', function (e)
 
 newListItem.addEventListener('click', function (e)
 {
+    console.log(newListItem.getAttribute('listNumber'))
     newList.createTasks();
     // thisTodolist.createTasks();
     
@@ -217,9 +225,12 @@ createNewList.addEventListener('click', function (e)
         container.removeChild(container.lastChild);
         }
     }
-
+    let i = 0;
     let newToDoList = new todoList; 
         newToDoList.newListCreation();
+        newToDoList.listNumber = i;
+        todoLists[i]=newToDoList;
+        i++
 
 
 
