@@ -192,14 +192,24 @@ fillTasks(){
 }
 
 createTasks(){
-    // if(container.firstChild){
-    //     while (container.firstChild){
-    //         container.removeChild(container.lastChild);
-    //         }
-    //     }
-    let test = document.createElement('div');
-    test.innerText="super swag!";
-    container.appendChild(test);
+
+    if(this.tasks.length>1){
+        while (container.firstChild){
+            container.removeChild(container.lastChild);
+            }
+        }
+        console.log("thisd ran")
+    this.tasks.forEach(element => {
+        let taskBase = document.createElement('div');
+        taskBase.classList.add('task');
+        let test = document.createElement('h4');
+        
+        test.innerText=element.taskTitle;
+        container.appendChild(taskBase);
+        taskBase.appendChild(test);
+
+    });
+   
 
   
     
