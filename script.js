@@ -85,6 +85,7 @@ newListItem.addEventListener('click', function (e)
     let parameter = newListItem.getAttribute('listnumber')
     console.log(parameter);
     thisList.createTasks(parameter);
+    ;
     }
     // thisTodolist.createTasks();
     
