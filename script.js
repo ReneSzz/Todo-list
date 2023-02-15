@@ -195,11 +195,11 @@ fillTasks(listNumber){
 
 createTasks(variable){
 
-    // if(this.tasks.length>1){
-    //     while (container.firstChild){
-    //         container.removeChild(container.lastChild);
-    //         }
-    //     }
+    if(this.tasks.length>1){
+        while (container.firstChild){
+            container.removeChild(container.lastChild);
+            }
+        }
 
         
    todoLists[variable].tasks.forEach(element => {
