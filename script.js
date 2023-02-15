@@ -67,7 +67,7 @@ acceptButton.addEventListener('click', function (e)
     newListItem.removeChild(acceptButton);
     newListItem.removeChild(listNameLabel);
     console.log(newList);
-    newList.fillTasks();
+    newList.fillTasks(newListItem.getAttribute('listnumber'));
     createNewList.style.display="block";
 })   
 
@@ -75,8 +75,10 @@ acceptButton.addEventListener('click', function (e)
 
 newListItem.addEventListener('click', function (e)
 {
-    console.log(newListItem.getAttribute('listNumber'))
-    newList.createTasks();
+    console.log(newListItem.getAttribute('listnumber'))
+    let parameter = newListItem.getAttribute('listnumber')
+    console.log(parameter);
+    newList.createTasks(parameter);
     // thisTodolist.createTasks();
     
 })
@@ -87,7 +89,7 @@ newListItem.addEventListener('click', function (e)
 
 
 
-fillTasks(){
+fillTasks(listNumber){
     
       
         // let taskContainer = document.createElement('div');
@@ -158,10 +160,10 @@ fillTasks(){
                     taskName.innerText = listNameLabel.value;
                     task.taskTitle=listNameLabel.value;
                     newTaskDiv.appendChild(taskName);
+                    let number = todoLists[listNumber].tasks.length
+                    todoLists[listNumber].tasks[number] = task;
                     
-                    thisTodolist.tasks[thisTodolist.tasks.length] = task;
-                    console.log(thisTodolist.tasks.length)
-                    console.log(thisTodolist.tasks)
+                    
                     
                     
                     baseTask.style.backgroundColor="white";
@@ -191,19 +193,20 @@ fillTasks(){
 
 }
 
-createTasks(){
+createTasks(variable){
 
-    if(this.tasks.length>1){
-        while (container.firstChild){
-            container.removeChild(container.lastChild);
-            }
-        }
-        console.log("thisd ran")
-    this.tasks.forEach(element => {
+    // if(this.tasks.length>1){
+    //     while (container.firstChild){
+    //         container.removeChild(container.lastChild);
+    //         }
+    //     }
+
+        
+   todoLists[variable].tasks.forEach(element => {
+    console.log(todoLists[variable].tasks);
         let taskBase = document.createElement('div');
         taskBase.classList.add('task');
         let test = document.createElement('h4');
-        
         test.innerText=element.taskTitle;
         container.appendChild(taskBase);
         taskBase.appendChild(test);
@@ -249,13 +252,6 @@ createNewList.addEventListener('click', function (e)
         counter++
 
 
-
-        newToDoList.addEventListener('click', function (e){
-            console.log(todoLists[newToDoList.listNumber.tasks]);
-
-        });
-
-  
 
 });
 
