@@ -57,28 +57,35 @@ subHeading2.appendChild(newListItem)
 //  newList = new todoList(listName.innerText);
 // todoLists[todoLists.length]=newList;
 // console.log(todoLists);2
-
+let thisList = this;
 acceptButton.addEventListener('click', function (e)
 {
     
     newListItem.classList.remove("listSideBar");
-    newList = new todoList (listNameLabel.value);
+    // newList = new todoList(listNameLabel.value);
+    thisList.name =  listNameLabel.value;
     listName.innerText = listNameLabel.value;
     newListItem.removeChild(acceptButton);
     newListItem.removeChild(listNameLabel);
     console.log(newList);
-    newList.fillTasks(newListItem.getAttribute('listnumber'));
+    thisList.fillTasks(newListItem.getAttribute('listnumber'));
     createNewList.style.display="block";
+    console.log(newListItem.getAttribute('listnumber'))
+    let parameter = newListItem.getAttribute('listnumber')
+    console.log(parameter);
+    thisList.createTasks(parameter);
 })   
 
 
 
 newListItem.addEventListener('click', function (e)
 {
+    if(container.firstChild){
     console.log(newListItem.getAttribute('listnumber'))
     let parameter = newListItem.getAttribute('listnumber')
     console.log(parameter);
-    newList.createTasks(parameter);
+    thisList.createTasks(parameter);
+    }
     // thisTodolist.createTasks();
     
 })
@@ -97,8 +104,13 @@ fillTasks(listNumber){
         // let taskName = document.createElement('h3');
         // let deleteTask = document.createElement('h4');
         
+        while (container.firstChild){
+            container.removeChild(container.lastChild);
+            }
+
         let test = document.createElement('h1');
-        test.innerText =this.name;
+        test.innerText = this.name;
+        console.log(this.name);
         // deleteTask.innerText = "x";
         // taskName.innerText = this.name;
         
@@ -195,12 +207,7 @@ fillTasks(listNumber){
 
 createTasks(variable){
 
-    if(this.tasks.length>1){
-        while (container.firstChild){
-            container.removeChild(container.lastChild);
-            }
-        }
-
+   todoLists[variable].fillTasks(variable);
         
    todoLists[variable].tasks.forEach(element => {
     console.log(todoLists[variable].tasks);
